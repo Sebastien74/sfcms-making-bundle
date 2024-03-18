@@ -1,0 +1,30 @@
+{% trans_default_domain 'front_default' %}
+
+{% if beforeMedia and afterMedia %}
+    {% set beforeI18nTitle = beforeMedia.i18n.title is defined ? beforeMedia.i18n.title : null %}
+    {% set beforeTitle = beforeMedia.displayTitle and beforeI18nTitle ? beforeI18nTitle : 'Avant'|trans %}
+    {% set afterI18nTitle = afterMedia.i18n.title is defined ? afterMedia.i18n.title : null %}
+    {% set afterTitle = afterMedia.displayTitle ? afterI18nTitle : 'Après'|trans %}
+    <div class="comparison-block image-comparison" data-component="image-comparison-slider">
+        <div class="image-comparison__slider-wrapper">
+            <input type="range" min="0" max="100" value="50" class="image-comparison__range" id="image-compare-range" data-image-comparison-range="" placeholder="{{ "Déplacer"|trans|striptags }}">
+            <div class="image-comparison__image-wrapper  image-comparison__image-wrapper--overlay"
+                 data-image-comparison-overlay="">
+                <figure class="image-comparison__figure image-comparison__figure--overlay" data-textbefore="{{ beforeTitle|striptags }}">
+                    {{ beforeMedia|thumb(thumbConfiguration, {'isInBox': false, 'popupGallery': false}) }}
+                </figure>
+            </div>
+            <div class="image-comparison__slider" data-image-comparison-slider="">
+                <span class="image-comparison__thumb" data-image-comparison-thumb="">
+                    <img class="image-comparison__thumb-icon" src="{{ asset('medias/comparison-arrows.png') }}" alt="{{ "Flèche"|trans|striptags }}" width="80" height="36">
+                </span>
+            </div>
+            <div class="image-comparison__image-wrapper">
+                <figure class="image-comparison__figure" data-textafter="{{ afterTitle|striptags }}">
+{#                    thumbConfiguration#}
+                    {{ afterMedia|thumb({}, {'isInBox': false, 'popupGallery': false}) }}
+                </figure>
+            </div>
+        </div>
+    </div>
+{% endif %}

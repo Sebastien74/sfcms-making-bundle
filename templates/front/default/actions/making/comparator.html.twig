@@ -1,0 +1,15 @@
+{% trans_default_domain 'front_default' %}
+
+{% set mediasByCategories = making.mediaRelations|mediasByCategories %}
+{% set beforeMedia = mediasByCategories.before is defined ? mediasByCategories.before|first : null %}
+{% set afterMedia = mediasByCategories.after is defined ? mediasByCategories.after|first : null %}
+
+{% if beforeMedia and afterMedia %}
+    <div class="making-comparator">
+        {% include 'front/'~websiteTemplate~'/actions/making/include/comparison.html.twig' with {
+            'thumbConfiguration': thumbConfiguration,
+            'beforeMedia': beforeMedia,
+            'afterMedia': afterMedia
+        } only %}
+    </div>
+{% endif %}

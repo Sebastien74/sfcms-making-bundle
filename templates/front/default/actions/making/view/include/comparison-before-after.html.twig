@@ -1,0 +1,15 @@
+{% trans_default_domain 'front_default' %}
+
+{% set mediasByCategories = entity.mediaRelations|mediasByCategories %}
+{% set beforeMedias = mediasByCategories.before is defined ? mediasByCategories.before : [] %}
+{% set afterMedias = mediasByCategories.after is defined ? mediasByCategories.after : [] %}
+
+{% if beforeMedias and afterMedias %}
+    {% set beforeMedia = beforeMedias|first %}
+    {% set afterMedia = afterMedias|first %}
+    {% include 'front/'~websiteTemplate~'/actions/making/include/comparison.html.twig' with {
+        'thumbConfiguration': thumbConfiguration,
+        'beforeMedia': beforeMedia,
+        'afterMedia': afterMedia
+    } only %}
+{% endif %}

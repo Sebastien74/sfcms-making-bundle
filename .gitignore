@@ -1,0 +1,7 @@
+.idea/
+.idea/workspace.xml
+
+composer.phar
+composer.lock
+
+/vendor/

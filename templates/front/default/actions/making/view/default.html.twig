@@ -1,0 +1,47 @@
+{% trans_default_domain 'front_default' %}
+
+{% if title|striptags|length > 0 %}
+    {% include 'front/'~websiteTemplate~'/blocks/title-header/default.html.twig' with {
+        'block': making,
+        'i18nMedia': making|mainMedia,
+        'fullSize': true,
+        'page': page,
+        'pageTitle': title,
+        'template': websiteTemplate,
+        'thumbConfiguration': thumbConfigurationHeader } %}
+{% endif %}
+
+<div class="container position-relative mt-5">
+
+    {% include '../../../../../core/webmaster-edit.html.twig' with {
+        'title': "Éditer la réalisation"|trans([], 'front_webmaster'),
+        'role': 'ROLE_MAKING',
+        'toolBoxClass': 'ms-5',
+        'path': path('admin_making_edit', {'website': website.id, 'making': making.id})
+    } only %}
+
+    {% if beforeMedias and afterMedias %}
+        {% set beforeMedia = beforeMedias|first %}
+        {% set afterMedia = afterMedias|first %}
+        {% include 'front/'~websiteTemplate~'/actions/making/include/comparison.html.twig' with {
+            'thumbConfiguration': thumbConfiguration,
+            'beforeMedia': beforeMedia,
+            'afterMedia': afterMedia
+        } only %}
+    {% endif %}
+
+    {% if subTitle or intro or body %}
+        <div class="content mt-4">
+            {% if subTitle %}
+                <h3>{{ subTitle|raw }}</h3>
+            {% endif %}
+            {% if intro %}
+                <p class="introduction">{{ intro|raw }}</p>
+            {% endif %}
+            {% if body %}
+                <div class="body">{{ body|raw }}</div>
+            {% endif %}
+        </div>
+    {% endif %}
+
+</div>

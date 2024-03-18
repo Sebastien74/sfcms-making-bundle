@@ -1,0 +1,248 @@
+@charset "UTF-8";
+
+/* -----------------------------------------------------------------
+
+    Created on : 2022-07-28, 3:15 PM
+    Author     : Sébastien FOURNIER <contact@sebastien-fournier.com>
+
+    FRONT COMPARISON COMPONENT :
+    ===========================
+
+------------------------------------------------------------------ */
+
+/*! purgecss start ignore */
+
+$height: 500px;
+
+$brand-blue-core: #0091df;
+$brand-blue-mid: #00617f;
+
+$base-light: #fff;
+$base-dark: #000;
+$base-pale: #f2f2f2;
+
+.comparison-block {
+    overflow: hidden;
+}
+
+.image-comparison {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.image-comparison__slider-wrapper {
+    position: relative;
+}
+
+.image-comparison__label {
+    font-size: 0;
+    line-height: 0;
+}
+
+.image-comparison__label,
+.image-comparison__range {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    appearance: none;
+    outline: none;
+    cursor: ew-resize;
+    z-index: 20;
+}
+
+.image-comparison__range {
+    @media (hover) {
+        &:hover ~ .image-comparison__slider .image-comparison__thumb {
+            transform: scale(1.2);
+        }
+    }
+}
+
+// Specificity needed to override hover state above
+.image-comparison .image-comparison__slider-wrapper .image-comparison__range:active,
+.image-comparison .image-comparison__slider-wrapper .image-comparison__range:focus,
+.image-comparison .image-comparison__slider-wrapper .image-comparison__range--active {
+    ~ .image-comparison__slider .image-comparison__thumb {
+        transform: scale(0.8);
+    }
+}
+
+.image-comparison__image-wrapper--overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(50% + 1px);
+    height: 100%;
+    overflow: hidden;
+}
+
+.image-comparison__figure {
+
+    margin: 0;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $base-pale;
+    }
+}
+
+.image-comparison__image-wrapper--overlay {
+    z-index: 1;
+}
+
+.image-comparison__figure--overlay,
+.image-comparison__figure--overlay picture,
+.image-comparison__figure--overlay img {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    object-position: left;
+    z-index: 1;
+}
+
+.image-comparison__figure img {
+    position: relative;
+}
+
+.image-comparison__image {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0 50%;
+    overflow: hidden;
+
+    .image-comparison__figure--overlay & {
+        z-index: 1;
+    }
+}
+
+.image-comparison__image-wrapper {
+    img {
+        width: 100%;
+    }
+}
+
+.image-comparison__slider {
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background-color: $base-light;
+    transition: background-color 0.3s ease-in-out;
+    z-index: 10;
+
+    .image-comparison__range--active ~ & {
+        background-color: rgba($base-light, 0);
+    }
+}
+
+.image-comparison__thumb {
+    position: absolute;
+    top: calc(50% - 40px);
+    left: calc(50% - 40px);
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $base-light;
+    border-radius: 50%;
+    transform-origin: center;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.image-comparison__figure {
+
+    &:after {
+
+        content: attr(data-textafter);
+        position: absolute;
+        right: 10px;
+        bottom: 0;
+        font-weight: 800;
+        color: #fff;
+        text-transform: uppercase;
+
+        @media only screen and (max-width: 767px) {
+            font-size: 13px;
+            bottom: 4px;
+        }
+
+        @media only screen and (min-width: 768px) {
+            font-size: 20px;
+            bottom: 0;
+        }
+    }
+
+    &.image-comparison__figure--overlay {
+        &:after {
+            content: attr(data-textbefore);
+            left: 10px;
+        }
+    }
+}
+
+.image-comparison__range::-webkit-slider-runnable-track {
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+}
+
+.image-comparison__range::-moz-range-thumb {
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+}
+
+.image-comparison__range::-webkit-slider-thumb {
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+}
+
+.image-comparison__range::-ms-fill-lower {
+    background-color: transparent;
+}
+
+.image-comparison__range::-ms-track {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    color: transparent;
+    outline: none;
+    cursor: col-resize;
+}
+
+.image-comparison__range::-ms-thumb {
+    width: 0.5%;
+    height: 100%;
+    opacity: 0;
+}
+
+.image-comparison__range::-ms-tooltip {
+    display: none;
+}

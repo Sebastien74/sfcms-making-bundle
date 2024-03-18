@@ -1,0 +1,66 @@
+{% extends "admin/page/making/making.html.twig" %}
+
+{% trans_default_domain 'admin' %}
+
+{% set isProduct = true %}
+
+{% block entityForm %}
+
+    {% set configsSet = [] %}
+
+    {{ form_start(form, {"attr": {"novalidate": "novalidate", "action": app.request.uri, 'id': 'form-entity'}}) }}
+        <div class="tab-content">
+            {% for tabId, config in tabs %}
+                <div class="tab-pane pt-4 pe-4 ps-4{% if activeTab == tabId or not activeTab and loop.first and isProduct %} active{% endif %}" id="{{ tabId }}" role="tabpanel" aria-labelledby="nav-{{ tabId }}-tab">
+                    <div class="row">
+                        {% for field in form.children %}
+                            {% if tabId not in configsSet %}
+                                {% if tabId == 'i18ns' %}
+                                    {{ form_row(form.adminName) }}
+                                    {% if form.i18ns is defined %}
+                                        {% include 'admin/core/form/i18ns.html.twig' with {'i18ns': form.i18ns, 'configsFieldsSet': ['video', 'targetLink', 'targetPage', 'targetLabel', 'targetStyle', 'newTab', 'externalLink']} %}
+                                    {% endif %}
+                                    {% set configsSet = configsSet|merge(['i18ns']) %}
+                                {% elseif tabId == 'videos' %}
+                                    {% if form.i18ns is defined %}
+                                        {% include 'admin/core/form/i18ns.html.twig' with {'i18ns': form.i18ns, 'disableTitle': true, 'disableTitleVideo': true, 'configsFieldsSet': ['title', 'subTitle', 'body', 'help', 'introduction', 'targetLink', 'targetPage', 'targetLabel', 'targetStyle', 'newTab', 'externalLink']} %}
+                                    {% endif %}
+                                    {% set configsSet = configsSet|merge(['videos']) %}
+                                {% elseif tabId == 'link' %}
+                                    {% if form.i18ns is defined %}
+                                        {% include 'admin/core/form/i18ns.html.twig' with {'i18ns': form.i18ns, 'disableTitle': true, 'disableTitleLink': true, 'configsFieldsSet': ['title', 'subTitle', 'body', 'help', 'introduction', 'video']} %}
+                                    {% endif %}
+                                    {% set configsSet = configsSet|merge(['link']) %}
+                                {% elseif tabId == 'configuration' %}
+                                    <div class="col-12">
+                                        <h4 class="card-subtitle mb-4">{{ "fal fa-cog"|fontawesome(null, 14, 'info-darken me-2') }}{{ "Configuration"|trans }}</h4>
+                                    </div>
+                                    {% if form.category is defined %}
+                                        {{ form_row(form.category) }}
+                                    {% endif %}
+                                    {{ form_row(form.publicationStart) }}
+                                    {{ form_row(form.publicationEnd) }}
+                                    {{ form_row(form.promote) }}
+                                    {% if form.customLayout is defined %}
+                                        {{ form_row(form.customLayout) }}
+                                    {% endif %}
+{#                                    {% include 'admin/core/form/i18ns-config.html.twig' with {'i18ns': form.i18ns} %}#}
+                                    {% set configsSet = configsSet|merge(['configuration']) %}
+                                {% elseif tabId == 'seo' %}
+                                    {% include 'admin/core/form/urls.html.twig' with {
+                                        'form': form,
+                                        'displaySeo': true,
+                                        'urls': form.urls,
+                                        'classname': interface.classname
+                                    } %}
+                                    {% set configsSet = configsSet|merge(['seo']) %}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {{ form_end(form) }}
+
+{% endblock %}

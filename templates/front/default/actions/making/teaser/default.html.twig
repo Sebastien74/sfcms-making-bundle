@@ -1,0 +1,80 @@
+{% trans_default_domain 'front_default' %}
+
+<div class="container-fluid-right">
+
+    <div class="title-block w-100 ">
+        <h2 class="title mb-0 text-uppercase"> Donnons une <b>nouvelle</b><br><b>vie</b> à la matière </h2>
+    </div>
+
+    <ul class="nav nav-tabs default ps-lg mb-5 mt-5" id="makings-tab" role="tablist">
+        {% set delay = 300 %}
+        {% for post in posts %}
+            <li class="nav-item d-flex p-0" role="presentation" data-aos="fade-down" data-aos-delay="{{ delay }}">
+                <button class="nav-link h-100 w-100 p-4 pe-0 ps-0{% if loop.first %} active{% endif %}" id="making-tab-{{ loop.index }}" data-bs-toggle="tab" data-bs-target="#tab-{{ loop.index }}" role="tab" aria-controls="tab-{{ loop.index }}" aria-selected="true">
+                    <div class="h-100 d-flex align-items-end justify-content-center">
+                        <div class="w-100">
+                            <div class="img-wrap ps-4 pe-4 mb-1">
+                                {{ post.categoryMedia|thumb({}, {'lazyLoad': true, 'maxWidth': null, 'maxHeight': null, 'only_html': true}) }}
+                            </div>
+                            <span class="ps-4 pe-4 d-inline-block">{{ post.categoryTitle|raw }}</span>
+                        </div>
+                    </div>
+                </button>
+            </li>
+            {% set delay = delay + 100 %}
+        {% endfor %}
+    </ul>
+
+    <div class="tab-content" id="makings-tab-content" data-aos="fade-right" data-aos-delay="500">
+        {% for post in posts %}
+
+            <div class="tab-pane fade position-relative{% if loop.first %} show active{% endif %}" id="tab-{{ loop.index }}" role="tabpanel" aria-labelledby="making-tab-{{ loop.index }}">
+
+                {% include 'core/webmaster-edit.html.twig' with {
+                    'title': "Éditer la réalisation"|trans([], 'front_webmaster'),
+                    'role': 'ROLE_MAKING',
+                    'toolBoxClass': 'ms-5',
+                    'path': path('admin_making_edit', {'website': website.id, 'making': post.entity.id})
+                } only %}
+
+                <div class="content row">
+                    <div class="col-md-11 mx-auto">
+
+                        <div class="row">
+                            <div class="col-md-5 mt-5 pt-5 pb-5">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        {% set path = post.pageUrl ? path('front_making_view', {'pageUrl': post.pageUrl, 'url': post.url}) : path('front_making_view_only', {'url': post.url}) %}
+                                        {% if post.title %}
+                                            <a href="{{ path }}"><h3 class="text-primary fw-500 mb-0 text-uppercase">{{ post.title|raw }}</h3></a>
+                                        {% endif %}
+                                        {% if post.intro %}
+                                            <div class="introduction mt-4">{{ post.intro|raw }}</div>
+                                        {% endif %}
+                                        <a href="{{ path }}" class="gdt-btn btn gdt-btn-primary making-link-contact-track mt-5">
+                                            {{ "En savoir plus"|trans|raw }}
+                                            {{ "fal fa-arrow-right"|fontawesome(null, 15, 'ms-2') }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7 images-wrap pb-5 mb-5">
+                                {% set beforeMedia = post.beforeMedias|first %}
+                                {% set afterMedia = post.afterMedias|first %}
+                                {% include 'front/'~websiteTemplate~'/actions/making/include/comparison.html.twig' with {
+                                    'thumbConfiguration': thumbConfiguration,
+                                    'beforeMedia': beforeMedia,
+                                    'afterMedia': afterMedia
+                                } only %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        {% endfor %}
+    </div>
+
+</div>
