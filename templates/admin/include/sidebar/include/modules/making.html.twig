@@ -1,16 +1,15 @@
 {% trans_default_domain 'admin' %}
 
 {% if 'making'|moduleActive(allModules) %}
-
     {% set uri = app.request.uri %}
     {% set active = '/makings/' in uri %}
     {% set module = 'making'|moduleActive(allModules, true) %}
-    {% set i18n = i18nsModules['making'][app.user.locale] is defined ? i18nsModules['making'][app.user.locale] : i18nsModules['making']['fr'] %}
-    {% set title = i18n.placeholder is defined and i18n.placeholder|striptags|length > 0 ? i18n.placeholder : i18nsModules['making']['entity'].adminName %}
-
+    {% set i18n = i18nsModules['making'][app.user.locale] is defined ? i18nsModules['making'][app.user.locale] : (i18nsModules['making']['fr'] is defined ? i18nsModules['making']['fr'] : null) %}
+    {% set title = i18n.placeholder is defined and i18n.placeholder|striptags|length > 0 ? i18n.placeholder : (i18nsModules['banner']['entity'].adminName is defined ? i18nsModules['banner']['entity'].adminName : 'Réalisations'|trans) %}
+    {% set icon = i18nsModules['making']['entity'].iconClass is defined and i18nsModules['making']['entity'].iconClass ? i18nsModules['making']['entity'].iconClass : '/medias/icons/fontawesome/light/tools.svg' %}
     <li{% if active %} class="active"{% endif %}>
         <a class="has-arrow {% if active %} active{% endif %}" href="javascript:void(0)" aria-expanded="false">
-            {{ i18nsModules['making']['entity'].iconClass|iconHtml({'width': 15, 'height': 15, 'class': 'white me-3'}) }}{{ title|raw }}
+            {{ icon|iconHtml({'width': 15, 'height': 15, 'class': 'white me-3'}) }}{{ title|raw }}
         </a>
         <ul aria-expanded="false" class="collapse{% if pageTag == 'makings' %} in{% endif %}">
             <li>
@@ -27,5 +26,4 @@
             </li>
         </ul>
     </li>
-
 {% endif %}

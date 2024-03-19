@@ -5,7 +5,7 @@ namespace App\Form\Manager\Module;
 use App\Entity\Core\Website;
 use App\Entity\Module\Making\Making;
 use App\Form\Interface\CoreFormManagerInterface;
-use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
+use Doctrine\ORM\Mapping\MappingException;
 
 /**
  * MakingManager.
@@ -14,10 +14,7 @@ use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
  *
  * @author Sébastien FOURNIER <contact@sebastien-fournier.com>
  */
-#[Autoconfigure(tags: [
-    ['name' => MakingManager::class, 'key' => 'module_making_form_manager'],
-])]
-class MakingManager
+class MakingManager implements MakingManagerInterface
 {
     /**
      * MakingManager constructor.
@@ -28,6 +25,8 @@ class MakingManager
 
     /**
      * @prePersist
+     *
+     * @throws MappingException
      */
     public function prePersist(Making $making, Website $website): void
     {

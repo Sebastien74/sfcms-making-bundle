@@ -5,53 +5,48 @@
     "config": {
         "slug": "making",
         "title": "Réalisations",
-        "roles": {
-            "ROLE_MAKING": {
-                "en": "Making management",
-                "fr": "Gestion des réalisations"
-            },
-            "ROLE_LAYOUT_MAKING": {
-                "en": "Layout makings",
-                "fr": "Mise en page des réalisations"
-            }
-        },
-        "layout": {
-            "App\\Entity\\Module\\Making\\Category": {
-                "title": "Catégorie de réalisation",
-                "blocks": [
-                    "content",
-                    "global"
-                ],
-                "modules": [
-                    "newscast",
-                    "form",
-                    "slider"
-                ]
-            },
-            "App\\Entity\\Module\\Making\\Making": {
-                "title": "Réalisation",
-                "blocks": [
-                    "content",
-                    "global"
-                ],
-                "modules": [
-                    "newscast",
-                    "form",
-                    "slider"
-                ]
-            }
-        },
-        "blockType": {
-            "title": "Réalisation",
-            "layout-comparison-before-after": "Réalisation",
-            "icon": "fal fa-sliders-h"
-        },
         "cmd": "app:copy:bundle",
         "module": {
             "name": "Réalisations",
             "description": "Module permettant de créer une ou plusieurs réalisations. Chaque réalisation comportera des photos de l'avant, et de l'après, afin de mettre en avant vos qualités et votre savoir-faire.",
             "icon": "/medias/icons/fontawesome/light/tools.svg"
         },
+        "blockTypes": [
+            {
+                "title": "Réalisation",
+                "slug": "layout-comparison-before-after",
+                "icon": "fal fa-sliders-h",
+                "editable": true
+            }
+        ],
+        "layouts": [
+            {
+                "classsname": "App\\Entity\\Module\\Making\\Category",
+                "title": "Catégorie de réalisation",
+                "blockTypes": [
+                    "content",
+                    "global"
+                ],
+                "modules": [
+                    "newscast",
+                    "form",
+                    "slider"
+                ]
+            },
+            {
+                "classsname": "App\\Entity\\Module\\Making\\Making",
+                "title": "Réalisation",
+                "blockTypes": [
+                    "content",
+                    "global"
+                ],
+                "modules": [
+                    "newscast",
+                    "form",
+                    "slider"
+                ]
+            }
+        ],
         "actions": [
             {
                 "name": "Teaser de réalisations",
@@ -81,6 +76,16 @@
                 "dropdown": true
             }
         ]
+    },
+    "roles": {
+        "ROLE_MAKING": {
+            "en": "Making management",
+            "fr": "Gestion des réalisations"
+        },
+        "ROLE_LAYOUT_MAKING": {
+            "en": "Layout makings",
+            "fr": "Mise en page des réalisations"
+        }
     },
     "keywords": [
         "sfcms",

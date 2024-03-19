@@ -5,7 +5,6 @@ namespace App\Controller\Admin\Module\Making;
 use App\Controller\Admin\AdminController;
 use App\Entity\Layout\BlockType;
 use App\Entity\Module\Making\Making;
-use App\Form\Interface\ModuleFormManagerInterface;
 use App\Form\Manager\Module\MakingManagerInterface;
 use App\Form\Type\Module\Making\MakingType;
 use App\Service\Interface\AdminLocatorInterface;
