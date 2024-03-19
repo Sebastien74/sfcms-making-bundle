@@ -15,6 +15,37 @@
                 "fr": "Mise en page des réalisations"
             }
         },
+        "layout": {
+            "App\\Entity\\Module\\Making\\Category": {
+                "title": "Catégorie de réalisation",
+                "blocks": [
+                    "content",
+                    "global"
+                ],
+                "modules": [
+                    "newscast",
+                    "form",
+                    "slider"
+                ]
+            },
+            "App\\Entity\\Module\\Making\\Making": {
+                "title": "Réalisation",
+                "blocks": [
+                    "content",
+                    "global"
+                ],
+                "modules": [
+                    "newscast",
+                    "form",
+                    "slider"
+                ]
+            }
+        },
+        "blockType": {
+            "title": "Réalisation",
+            "layout-comparison-before-after": "Réalisation",
+            "icon": "fal fa-sliders-h"
+        },
         "cmd": "app:copy:bundle",
         "module": {
             "name": "Réalisations",

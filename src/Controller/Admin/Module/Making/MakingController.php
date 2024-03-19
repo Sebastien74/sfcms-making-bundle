@@ -6,6 +6,7 @@ use App\Controller\Admin\AdminController;
 use App\Entity\Layout\BlockType;
 use App\Entity\Module\Making\Making;
 use App\Form\Interface\ModuleFormManagerInterface;
+use App\Form\Manager\Module\MakingManagerInterface;
 use App\Form\Type\Module\Making\MakingType;
 use App\Service\Interface\AdminLocatorInterface;
 use App\Service\Interface\CoreLocatorInterface;
@@ -34,11 +35,11 @@ class MakingController extends AdminController
      * MakingController constructor.
      */
     public function __construct(
-        protected ModuleFormManagerInterface $moduleFormInterface,
+        protected MakingManagerInterface $formManagerInterface,
         protected CoreLocatorInterface $baseLocator,
         protected AdminLocatorInterface $adminLocator
     ) {
-        $this->formManager = $moduleFormInterface->making();
+        $this->formManager = $formManagerInterface;
         parent::__construct($baseLocator, $adminLocator);
     }
 
