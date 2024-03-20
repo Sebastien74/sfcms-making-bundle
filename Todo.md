@@ -1,1 +1,0 @@
-Récupérer les roles dans le tableau JSon et faire pareil sur les autres bundles

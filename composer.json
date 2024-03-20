@@ -6,6 +6,16 @@
         "slug": "making",
         "title": "Réalisations",
         "cmd": "app:copy:bundle",
+        "roles": {
+            "ROLE_MAKING": {
+                "en": "Making management",
+                "fr": "Gestion des réalisations"
+            },
+            "ROLE_LAYOUT_MAKING": {
+                "en": "Layout makings",
+                "fr": "Mise en page des réalisations"
+            }
+        },
         "module": {
             "name": "Réalisations",
             "description": "Module permettant de créer une ou plusieurs réalisations. Chaque réalisation comportera des photos de l'avant, et de l'après, afin de mettre en avant vos qualités et votre savoir-faire.",
@@ -77,16 +87,6 @@
             }
         ]
     },
-    "roles": {
-        "ROLE_MAKING": {
-            "en": "Making management",
-            "fr": "Gestion des réalisations"
-        },
-        "ROLE_LAYOUT_MAKING": {
-            "en": "Layout makings",
-            "fr": "Mise en page des réalisations"
-        }
-    },
     "keywords": [
         "sfcms",
         "making",
@@ -102,8 +102,8 @@
         }
     ],
     "require": {
-        "php": ">=8.2.11",
-        "symfony/framework-bundle": "^6.4|^7.0"
+        "php": ">=8.3",
+        "symfony/framework-bundle": "^7.0"
     },
     "extra": {
         "branch-alias": {
