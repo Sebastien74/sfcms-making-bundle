@@ -19,13 +19,13 @@
         "module": {
             "name": "Réalisations",
             "description": "Module permettant de créer une ou plusieurs réalisations. Chaque réalisation comportera des photos de l'avant, et de l'après, afin de mettre en avant vos qualités et votre savoir-faire.",
-            "icon": "/medias/icons/fontawesome/light/tools.svg"
+            "icon": "/medias/icons/light/tools.svg"
         },
         "blockTypes": [
             {
                 "title": "Réalisation",
                 "slug": "layout-comparison-before-after",
-                "icon": "fal fa-sliders-h",
+                "icon": "fal sliders-h",
                 "editable": true
             }
         ],
@@ -63,7 +63,7 @@
                 "controller": "App\\Controller\\Front\\Action\\MakingController",
                 "entity": "App\\Entity\\Module\\Making\\Teaser",
                 "action": "teaser",
-                "icon": "/medias/icons/fontawesome/light/tools.svg",
+                "icon": "/medias/icons/light/tools.svg",
                 "card": false,
                 "dropdown": true
             },
@@ -72,7 +72,7 @@
                 "controller": "App\\Controller\\Front\\Action\\MakingController",
                 "entity": "App\\Entity\\Module\\Making\\Listing",
                 "action": "index",
-                "icon": "/medias/icons/fontawesome/light/list-alt.svg",
+                "icon": "/medias/icons/light/list-alt.svg",
                 "card": false,
                 "dropdown": true
             },
@@ -81,7 +81,7 @@
                 "controller": "App\\Controller\\Front\\Action\\MakingController",
                 "entity": "App\\Entity\\Module\\Making\\Making",
                 "action": "comparator",
-                "icon": "/medias/icons/fontawesome/light/images.svg",
+                "icon": "/medias/icons/light/images.svg",
                 "card": false,
                 "dropdown": true
             }

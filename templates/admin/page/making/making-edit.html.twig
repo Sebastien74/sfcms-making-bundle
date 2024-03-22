@@ -33,7 +33,7 @@
                                     {% set configsSet = configsSet|merge(['link']) %}
                                 {% elseif tabId == 'configuration' %}
                                     <div class="col-12">
-                                        <h4 class="card-subtitle mb-4">{{ "fal fa-cog"|fontawesome(null, 14, 'info-darken me-2') }}{{ "Configuration"|trans }}</h4>
+                                        <h4 class="card-subtitle mb-4">{{ "fal cog"|icon(null, 14, 'info-darken me-2') }}{{ "Configuration"|trans }}</h4>
                                     </div>
                                     {% if form.category is defined %}
                                         {{ form_row(form.category) }}

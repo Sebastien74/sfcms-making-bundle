@@ -32,23 +32,23 @@
 {% set tabs = {
     "i18ns": {
         "title": "Description"|trans,
-        "icon": "fal fa-align-center"
+        "icon": "fal align-center"
     },
     "configuration": {
         "title": "Configuration"|trans,
-        "icon": "fal fa-cog"
+        "icon": "fal cog"
     },
     "link": {
         "title": "Link"|trans,
-        "icon": "fal fa-link"
+        "icon": "fal link"
     },
     "videos": {
         "title": "Vidéos"|trans,
-        "icon": "fal fa-video"
+        "icon": "fal video"
     },
     "seo": {
         "title": "Référencement"|trans,
-        "icon": "fal fa-chart-line"
+        "icon": "fal chart-line"
     }}
 %}
 
@@ -70,7 +70,7 @@
                             <a {% if not isMainEntity %}href="{{ path('admin_making_edit', {'website': websiteId, 'making': entity.id, "tab": tabId} ) }}"{% endif %}
                                id="nav-{{ tabId }}-tab" class="nav-link{% if activeTab == tabId or not activeTab and loop.first and isMainEntity %} active{% endif %}"
                                     {% if isMainEntity %}data-bs-toggle="tab" href="#{{ tabId }}" role="tab" aria-selected="{{ loop.first }}"{% else %}data-toggle="preloader"{% endif %}>
-                                {{ config.icon|fontawesome(17, 17, 'me-sm-2') }}
+                                {{ config.icon|icon(17, 17, 'me-sm-2') }}
                                 <span class="d-none d-sm-inline-block">{{ config.title }}</span>
                             </a>
                         </li>
@@ -80,14 +80,14 @@
                     <a href="{{ path('admin_making_medias', {'website': websiteId, 'making': entity.id} ) }}"
                        id="medias-path"
                        class="nav-link{% if not isMainEntity %} active{% endif %}">
-                        {{ 'fal fa-photo-video'|fontawesome(null, 17, 'me-sm-2') }}
+                        {{ 'fal photo-video'|icon(null, 17, 'me-sm-2') }}
                         <span class="d-none d-sm-inline-block">{{ "Médias"|trans }}</span>
                     </a>
                 </li>
                 {% if isMainEntity %}
                     <li class="nav-item right">
                         <span id="save-entity" class="nav-link save bg-info cursor">
-                            <span class="d-none d-sm-inline-block text-white">{{ 'fal fa-save'|fontawesome(16, 17, 'white me-sm-2') }}<span>{{ "Enregistrer"|trans }}</span></span>
+                            <span class="d-none d-sm-inline-block text-white">{{ 'fal save'|icon(16, 17, 'white me-sm-2') }}<span>{{ "Enregistrer"|trans }}</span></span>
                         </span>
                     </li>
                 {% endif %}
